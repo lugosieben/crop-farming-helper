@@ -5,7 +5,6 @@ import net.lugo.cropfarminghelper.renderers.MarkerOverlayRenderer;
 import net.lugo.cropfarminghelper.util.HudMessage;
 import net.lugo.cropfarminghelper.util.ReusableBlockData;
 import net.lugo.overlaylib.Overlay;
-import net.lugo.overlaylib.OverlayLib;
 import net.lugo.overlaylib.managers.CachedOverlayManager;
 import net.lugo.overlaylib.util.OverlayRendererBlockData;
 import net.lugo.overlaylib.util.TextureSection;
@@ -38,7 +37,6 @@ public class OverlayHandler {
             //noinspection DataFlowIssue
             float speed = CropBlock.getGrowthSpeed(blockData.block(), MC.level, blockPos) / 10;
             Color color;
-            CropFarmingHelper.LOGGER.info("Growth speed: {}", speed);
             if (speed > 25/30f) color = ModConfig.perfectColor;
             else if (speed > 25/40f) color = ModConfig.goodColor;
             else color = ModConfig.badColor;
@@ -91,7 +89,6 @@ public class OverlayHandler {
     }
 
     public static void clearAll() {
-        OverlayLib.LOGGER.info("Clearing all");
         overlayManager.clearAll();
     }
 }
