@@ -1,0 +1,80 @@
+plugins {
+	id 'net.fabricmc.fabric-loom' version "${loom_version}"
+	id 'maven-publish'
+}
+
+version = project.mod_version
+group = project.maven_group
+
+repositories {
+	maven { url "https://api.modrinth.com/maven" }
+}
+
+dependencies {
+	minecraft "com.mojang:minecraft:${project.minecraft_version}"
+	implementation "net.fabricmc:fabric-loader:${project.loader_version}"
+
+	implementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_api_version}"
+	implementation "maven.modrinth:overlaylib:${project.overlaylib_version}"
+//	implementation files("overlaylib-${project.overlaylib_version}.jar") // For local testing without needing to publish overlaylib
+	implementation "maven.modrinth:yacl:${project.yacl_version}"
+	implementation "maven.modrinth:modmenu:${project.modmenu_version}"
+}
+
+def replaceProperties = [
+		version: version,
+		java_version: java_version,
+		loader_version: loader_version,
+		minecraft_version: minecraft_version,
+		minecraft_version_compatible: minecraft_version_compatible,
+		fabric_api_version: fabric_api_version,
+		overlaylib_version: overlaylib_version,
+		modmenu_version: modmenu_version,
+		yacl_version: yacl_version
+]
+
+processResources {
+	inputs.properties replaceProperties
+	//noinspection GroovyAssignabilityCheck
+	replaceProperties.put 'project', project
+
+	filesMatching("fabric.mod.json") {
+		expand replaceProperties
+	}
+}
+
+tasks.withType(JavaCompile).configureEach {
+	it.options.release = 25
+}
+
+java {
+	withSourcesJar()
+
+	sourceCompatibility = JavaVersion.VERSION_25
+	targetCompatibility = JavaVersion.VERSION_25
+}
+
+jar {
+	def projectName = project.name
+	inputs.property "projectName", projectName
+
+	from("LICENSE") {
+		rename { "${it}_$projectName"}
+	}
+}
+
+loom {
+
+	accessWidenerPath = file("src/main/resources/cropfarminghelper.classtweaker")
+
+}
+
+publishing {
+	publications {
+		create("mavenJava", MavenPublication) {
+			from components.java
+		}
+	}
+
+	repositories {}
+}

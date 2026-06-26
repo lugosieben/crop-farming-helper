@@ -1,0 +1,37 @@
+{
+  "text.cropfarminghelper.message.toggle.on": "Crop Farming Helper toggled on",
+  "text.cropfarminghelper.message.toggle.off": "Crop Farming Helper toggled off",
+  "text.cropfarminghelper.config.title": "Crop Farming Helper Config",
+  "key.category.minecraft.cropfarminghelper": "Crop Farming Helper",
+  "key.cropfarminghelper.toggle": "Toggle Crop Farming Helper",
+  "text.cropfarminghelper.config.category.main": "Crop Farming Helper Config",
+
+  "text.cropfarminghelper.config.group.general": "General",
+
+  "text.cropfarminghelper.config.option.chunk_scan_range.name": "Scan Range",
+  "text.cropfarminghelper.config.option.chunk_scan_range.description": "The horizontal radius (in chunks) around the player to scan for crops.",
+
+  "text.cropfarminghelper.config.option.scan_range_vertical.name": "Vertical Scan Range",
+  "text.cropfarminghelper.config.option.scan_range_vertical.description": "The vertical radius (in blocks) around the player to scan for crops.",
+  "text.cropfarminghelper.config.option.scan_range_vertical.infinite": "Infinite",
+
+  "text.cropfarminghelper.config.group.overlay_hiding": "Overlay Hiding",
+  "text.cropfarminghelper.config.option.hide_green.name": "Don't show Perfect",
+  "text.cropfarminghelper.config.option.hide_green.description": "If enabled, 'perfect' conditions overlays will be hidden.",
+
+  "text.cropfarminghelper.config.group.customize": "Color Customization",
+  "text.cropfarminghelper.config.option.perfect_color.name": "Perfect Color",
+  "text.cropfarminghelper.config.option.perfect_color.description": "The overlay color used for optimal crop conditions. (33.3% random tick growth chance)",
+  "text.cropfarminghelper.config.option.good_color.name": "Good Color",
+  "text.cropfarminghelper.config.option.good_color.description": "The overlay color used for acceptable crop conditions. (25% random tick growth chance)",
+  "text.cropfarminghelper.config.option.bad_color.name": "Bad Color",
+  "text.cropfarminghelper.config.option.bad_color.description": "The overlay color used for bad crop conditions.",
+
+  "text.cropfarminghelper.config.category.misc": "Miscellaneous",
+  "text.cropfarminghelper.config.option.max_computations_per_tick.name": "Max Computations Per Tick",
+  "text.cropfarminghelper.config.option.max_computations_per_tick.description": "The maximum amount of chunks being computed in a single tick. Lower this if experiencing lags.",
+
+  "text.cropfarminghelper.config.category.report": "Request Features & Report Issues",
+  "text.cropfarminghelper.config.button.report": "Report an Issue or request a Feature",
+  "text.cropfarminghelper.config.button.report.description": "Opens the GitHub Issues page of this mod"
+}

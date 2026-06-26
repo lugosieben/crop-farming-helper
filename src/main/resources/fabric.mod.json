@@ -1,0 +1,41 @@
+{
+	"schemaVersion": 1,
+	"id": "cropfarminghelper",
+	"version": "${version}",
+	"name": "Crop Farming Helper",
+	"description": "Client-side tool to help optimize farms by displaying growth speed factors",
+	"authors": [
+		"Lugo_Sieben"
+	],
+	"contact": {
+		"homepage": "https://modrinth.com/mod/crop-farming-helper",
+		"issues": "https://github.com/lugosieben/crop-farming-helper/issues/new",
+		"sources": "https://github.com/lugosieben/crop-farming-helper"
+	},
+	"license": "CC BY-NC-SA 4.0",
+	"icon": "assets/cropfarminghelper/icon.png",
+	"environment": "client",
+	"entrypoints": {
+		"main": [
+			"net.lugo.cropfarminghelper.CropFarmingHelper"
+		],
+		"modmenu": [
+			"net.lugo.cropfarminghelper.config.ModMenuIntegration"
+		]
+	},
+	"mixins": [
+		"cropfarminghelper.mixins.json"
+	],
+	"accessWidener": "cropfarminghelper.classtweaker",
+	"depends": {
+		"fabricloader": ">=${loader_version}",
+		"minecraft": "${minecraft_version_compatible}",
+		"java": ">=${java_version}",
+		"fabric-api": ">=${fabric_api_version}",
+		"overlaylib": "~${overlaylib_version}",
+		"yet_another_config_lib_v3": ">=${yacl_version}"
+	},
+	"suggests": {
+		"modmenu": ">=${modmenu_version}"
+	}
+}
