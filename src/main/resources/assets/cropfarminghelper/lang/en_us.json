@@ -12,7 +12,7 @@
   "text.cropfarminghelper.config.option.chunk_scan_range.description": "The horizontal radius (in chunks) around the player to scan for crops.",
 
   "text.cropfarminghelper.config.option.scan_range_vertical.name": "Vertical Scan Range",
-  "text.cropfarminghelper.config.option.scan_range_vertical.description": "The vertical radius (in blocks) around the player to scan for crops.",
+  "text.cropfarminghelper.config.option.scan_range_vertical.description": "The vertical radius (in 16 block high chunks) around the player to scan for crops.",
   "text.cropfarminghelper.config.option.scan_range_vertical.infinite": "Infinite",
 
   "text.cropfarminghelper.config.group.overlay_hiding": "Overlay Hiding",
