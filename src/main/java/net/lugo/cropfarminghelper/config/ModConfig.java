@@ -1,5 +1,6 @@
 package net.lugo.cropfarminghelper.config;
 
+import com.mojang.blaze3d.Blaze3D;
 import dev.isxander.yacl3.api.*;
 import dev.isxander.yacl3.api.controller.*;
 import dev.isxander.yacl3.config.v2.api.ConfigClassHandler;
@@ -11,12 +12,14 @@ import net.lugo.cropfarminghelper.OverlayHandler;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.Identifier;
-import net.minecraft.util.Util;
 
 import java.awt.*;
+import java.net.URI;
+import java.net.URISyntaxException;
 
 public class ModConfig {
     private static final class Defaults {
+        static final boolean ALWAYS_ON = false;
         static final int CHUNK_SCAN_RANGE = 4;
         static final int CHUNK_SCAN_RANGE_VERTICAL = 25;
         static final boolean HIDE_GREEN = false;
@@ -25,6 +28,9 @@ public class ModConfig {
         static final Color GOOD_COLOR = new Color(255, 255, 0, 255);
         static final Color BAD_COLOR = new Color(255, 0, 0, 255);
     }
+
+    @SerialEntry
+    public static boolean alwaysOn = Defaults.ALWAYS_ON;
 
     @SerialEntry
     public static int chunkScanRange = Defaults.CHUNK_SCAN_RANGE;
@@ -57,6 +63,20 @@ public class ModConfig {
                         .name(Component.translatable("text.cropfarminghelper.config.category.main"))
                         .group(OptionGroup.createBuilder()
                                 .name(Component.translatable("text.cropfarminghelper.config.group.general"))
+                                .option(Option.<Boolean>createBuilder()
+                                        .name(Component.translatable("text.cropfarminghelper.config.option.always_on.name"))
+                                        .description(OptionDescription.of(Component.translatable("text.cropfarminghelper.config.option.always_on.description")))
+                                        .binding(
+                                                Defaults.ALWAYS_ON,
+                                                () -> alwaysOn,
+                                                newVal -> {
+                                                    alwaysOn = newVal;
+                                                    if (newVal) {
+                                                        OverlayHandler.setActive(true);
+                                                    }
+                                                })
+                                        .controller(TickBoxControllerBuilder::create)
+                                        .build())
                                 .option(Option.<Integer>createBuilder()
                                         .name(Component.translatable("text.cropfarminghelper.config.option.chunk_scan_range.name"))
                                         .description(OptionDescription.of(Component.translatable("text.cropfarminghelper.config.option.chunk_scan_range.description")))
@@ -172,7 +192,13 @@ public class ModConfig {
                                     var modContainerOpt = FabricLoader.getInstance().getModContainer(CropFarmingHelper.MOD_ID);
                                     modContainerOpt.ifPresent(modContainer -> {
                                         var issuesUrlOpt = modContainer.getMetadata().getContact().get("issues");
-                                        issuesUrlOpt.ifPresent(url -> Util.getPlatform().openUri(url));
+                                        issuesUrlOpt.ifPresent(url -> {
+                                            try {
+                                                Blaze3D.openUri(new URI(url));
+                                            } catch (URISyntaxException e) {
+                                                CropFarmingHelper.LOGGER.info("couldnt open issues uri: {}", e.getMessage());
+                                            }
+                                        });
                                     });
                                 })
                                 .build())

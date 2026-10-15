@@ -8,6 +8,9 @@
 
   "text.cropfarminghelper.config.group.general": "General",
 
+  "text.cropfarminghelper.config.option.always_on.name": "Always On",
+  "text.cropfarminghelper.config.option.always_on.description": "If enabled, the overlay is automatically turned on at startup.",
+
   "text.cropfarminghelper.config.option.chunk_scan_range.name": "Scan Range",
   "text.cropfarminghelper.config.option.chunk_scan_range.description": "The horizontal radius (in chunks) around the player to scan for crops.",
 

@@ -40,7 +40,7 @@ public class OverlayHandler {
             if (speed > 25/30f) color = ModConfig.perfectColor;
             else if (speed > 25/40f) color = ModConfig.goodColor;
             else color = ModConfig.badColor;
-            return new OverlayRendererBlockData(blockPos, color.getRed() / 255f, color.getGreen() / 255f, color.getBlue() / 255f, height- 1f, TextureSection.SINGULAR);
+            return new OverlayRendererBlockData(blockPos, color, height - 1f, TextureSection.SINGULAR);
         }
 
         return OverlayRendererBlockData.NO_RENDER;
@@ -51,11 +51,16 @@ public class OverlayHandler {
             overlay = new Overlay(new MarkerOverlayRenderer(), ModConfig.chunkScanRange, ModConfig.chunkScanRangeVertical, overlayManager);
             overlay.register();
         }
+        isActive = ModConfig.alwaysOn;
         overlay.setActive(isActive);
     }
 
     public static void toggle() {
-        isActive = !isActive;
+        setActive(!isActive);
+    }
+
+    public static void setActive(boolean active) {
+        isActive = active;
 
         if (overlay != null) {
             overlay.setActive(isActive);

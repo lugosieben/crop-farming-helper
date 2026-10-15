@@ -7,7 +7,6 @@ import net.lugo.cropfarminghelper.CropFarmingHelper;
 import net.lugo.cropfarminghelper.OverlayHandler;
 import net.minecraft.client.KeyMapping;
 import net.minecraft.resources.Identifier;
-import org.lwjgl.glfw.GLFW;
 
 public class KeyMappings {
 
@@ -19,7 +18,7 @@ public class KeyMappings {
     }
 
     private static void registerCropFarmingHelperKeyMapping() {
-        KeyMapping cropFarmingHelperKey = new KeyMapping(BASE_KEY + ".toggle", InputConstants.Type.KEYSYM, GLFW.GLFW_KEY_F8, CATEGORY);
+        KeyMapping cropFarmingHelperKey = new KeyMapping(BASE_KEY + ".toggle", InputConstants.Type.KEYBOARD, InputConstants.KEY_F8, CATEGORY);
         KeyMappingHelper.registerKeyMapping(cropFarmingHelperKey);
 
         ClientTickEvents.END_CLIENT_TICK.register(_ -> {
